@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 
 export async function useUtils() {
 
@@ -20,6 +20,15 @@ export async function useUtils() {
         console.error('Error fetching data:', error)
     }
     
+    const getStateFromId = (target) => {
+        const targetId = target.equipmentStateId
+        const result = equipmentState.value.find(item => item.id === targetId)
+        return reactive({
+            ...result,
+            date: ref(target.date)
+        })
+    }
+
     const getPositionHistory = (targetId) => {
         const result = equipmentPosHist.value.find(item => item.equipmentId === targetId)
         // organiza pela data (invertido)
@@ -61,6 +70,7 @@ export async function useUtils() {
         equipmentStateHist,
         getPositionHistory,
         getLatestPositions,
+        getStateFromId,
         everyEquipmentEver,
     }
 

@@ -1,52 +1,67 @@
 <template>
     <div v-if="showMode === 'latest'">
-        <l-marker ref="lmarker" 
-        :latLng="[equipmentData.value.positionHistory[0].lat, equipmentData.value.positionHistory[0].lon]"        
-        >
+        <l-marker ref="lmarker"
+            :latLng="[equipmentData.value.positionHistory[0].lat, equipmentData.value.positionHistory[0].lon]"
+            @click="markerClicked" :icon="icon">
             <l-tooltip>
-                asd
+                <CustomToolTip :data="equipmentData"/>
             </l-tooltip>
         </l-marker>
+        <!-- <l-tooltip>
+                <CustomToolTip
+                :data="getStateFromId(equipmentData.value.stateHistory[0]) "/>
+            </l-tooltip>
+        </l-marker> -->
     </div>
-    <div v-else-if="showMode === equipmentData.value.equipment.id">
+    <!-- <div v-else-if="showMode === equipmentData.value.equipment.id">
         <div v-for="equipmentPos in equipmentData.value.positionHistory">
             <l-marker ref="lmarker"
             :latLng="[equipmentPos.lat, equipmentPos.lon]"
+            @click="markerUnclicked"
             >
                 <l-tooltip>
                     {{ equipmentData.value.equipment.id }}
                 </l-tooltip>
+                
             </l-marker>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <script setup>
-import { ref, defineEmits, onMounted  } from 'vue'
+import { ref, defineEmits, onMounted } from 'vue'
 
-// id,
-// equipmentModelId,
-// equipmentName,
-// modelName,
-// hourlyEarnings,
-// date,
-// lat,
-// long 
+const { equipmentData, showMode } = defineProps(['equipmentData', 'showMode']);
+import { useIcons } from '~/composables/useIcons.js'
+import { useUtils } from '~/composables/useUtils.js'
 
+const { harvesterIcon, caminhao, garra, divIcon } = useIcons();
 
-const {equipmentData, showMode} = defineProps(['equipmentData', 'showMode']);
+const emit = defineEmits(['markerClicked'])
 
-const emit = defineEmits(['meuEvento'])
+const icon = ref();
 
-const markerclicked = () => {
-    emit('meuEvento', 'argumento1')
+onMounted(() => {
+    if (equipmentData.value.equipmentModel.name === "Caminhão de carga") {
+        icon.value = caminhao
+    }
+    else if (equipmentData.value.equipmentModel.name === "Harvester") {
+        icon.value = harvesterIcon
+    }
+    else if (equipmentData.value.equipmentModel.name === "Garra traçadora") {
+        icon.value = garra
+    }
+})
+
+const markerClicked = () => {
+    emit('markerClicked', equipmentData.value.equipment.id)
 }
 
-onMounted(() => {console.log(equipmentData.value.isActive);console.log('ok')})
-
+const markerUnclicked = () => {
+    emit('markerClicked', 'latest')
+}
 
 </script>
 
 
-<style scoped>
-</style>
+<style scoped></style>
