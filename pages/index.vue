@@ -10,11 +10,16 @@
                 </v-list-item>
                 <v-divider></v-divider>
                 <v-list density="compact" nav>
-                    <v-list-item title="Home" value="home"></v-list-item>
-                    <v-list-item title="About" value="about"></v-list-item>
+                    <v-col cols="12">
+                        <v-btn block class="full-width font-weight-bold" density="comfortable" @click="handleMovimentationClicked">Movimentação</v-btn>
+                    </v-col>
+                    <v-col cols="12">
+                        <v-btn block class="full-width font-weight-bold" density="comfortable" @click="handleDetailsClicked">Detalhes</v-btn>
+                    </v-col>
                 </v-list>
                 <CustomDrawer :activeEquipment="activeEquipment"/>
             </v-navigation-drawer>
+            <DetailsComponent2 :dialog="detailsDialog" :equipmentId="activeEquipment" @closeDialog="detailsDialog=false"/>
             <!-- MAPA -->
             <v-main style="height: 100vh">
                 <v-app theme="light">
@@ -34,7 +39,17 @@
 import { ref } from 'vue'
 
 const dr = ref(false)
-const activeEquipment = ref('asd')
+const activeEquipment = ref(null)
+const detailsDialog = ref(false)
+
+const handleMovimentationClicked = () => {
+    console.log("clicou em mov")
+}
+
+const handleDetailsClicked = () => {
+    console.log("clicou em det")
+    detailsDialog.value = true
+}
 
 const handleMarkerClicked = (id) => {
     dr.value = !dr.value

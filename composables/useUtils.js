@@ -56,11 +56,12 @@ export async function useUtils() {
             equipmentModel: equipmentModel.value.filter(model => model.id === eq.equipmentModelId)[0],
             positionHistory: getPositionHistory(eq.id),
             stateHistory: getStateHistory(eq.id),
-            // isActive: true,
-            // isLatest: false
         }))
-        //console.log(everyEquipmentEver.value[i-1])
     })
+
+    const getEquipment = (targetId) => {
+        return everyEquipmentEver.value.find(item => item.value.equipment.id === targetId)
+    }
 
     return { 
         equipment,
@@ -71,6 +72,8 @@ export async function useUtils() {
         getPositionHistory,
         getLatestPositions,
         getStateFromId,
+        getEquipment,
+        getStateHistory,
         everyEquipmentEver,
     }
 
