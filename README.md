@@ -4,13 +4,20 @@ This is a implementation of a challenge proposed by AIKO. In it, you are the fro
 
 ## Some of the features
 
-![Display latest states with mouse hover](https://github.com/CristovaoBG/teste-frontend-v4/docs/tags.mp4)
 
-![Show timeline history of the status](https://github.com/CristovaoBG/teste-frontend-v4/docs/lista.mp4)
 
-![Calculates and displays important data](https://github.com/CristovaoBG/teste-frontend-v4/docs/info.mp4)
+Display latest states with mouse hover
+https://github.com/user-attachments/assets/e152cca5-3e14-4d66-b5d1-956782aa1336
 
-![Show positional history](https://github.com/CristovaoBG/teste-frontend-v4/docs/posicoes.mp4)
+Show timeline history of the status
+https://github.com/user-attachments/assets/f78610bb-4495-447b-a59e-64d6265e28ab
+
+Calculates and displays important data
+https://github.com/user-attachments/assets/72d0298a-c6d9-452b-a999-e7dbcc6af4c0
+
+Show positional history
+https://github.com/user-attachments/assets/ab817ae0-1093-4935-9f78-29874ddc9ea6
+
 
 ## Used technologies
 
