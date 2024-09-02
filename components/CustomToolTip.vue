@@ -27,9 +27,9 @@ const { getStateFromId } = await useUtils();
 const { data } = defineProps(['data']);
 
 
-const getState = computed(() => { return getStateFromId(data.value.stateHistory[0]) })
+const getState = computed(() => { return getStateFromId(data.stateHistory[0]) })
 const date = computed(() => {
-    const date = new Date(getStateFromId(data.value.stateHistory[0]).date)
+    const date = new Date(getStateFromId(data.stateHistory[0]).date)
     return date.toLocaleDateString('pt-BR', {
         day: '2-digit',
         month: '2-digit',

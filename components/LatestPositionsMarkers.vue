@@ -2,7 +2,7 @@
 <template>
     <div>
         <CustomMarker
-        v-for="equipment in everyEquipmentEver"
+        v-for="equipment in filteredEquipments"
         :equipmentData="equipment"
         :showMode="showMode"
         @markerClicked="handleNotify"
@@ -16,7 +16,7 @@ import { ref, onMounted, computed } from 'vue'
 import { useFetch } from '#app'
 import { useUtils } from '~/composables/useUtils.js'
 
-const { everyEquipmentEver } = await useUtils();
+const { filteredEquipments } = await useUtils();
 
 const showMode = ref("latest")
 

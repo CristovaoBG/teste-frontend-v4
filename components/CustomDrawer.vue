@@ -19,7 +19,7 @@
 import { ref, defineProps, onMounted, computed } from 'vue'
 import { useUtils } from '/composables/useUtils'
 
-const { getEquipment, getStateFromId, getStateHistory } = await useUtils()
+const { getStateFromId, getStateHistory } = await useUtils()
 
 const props = defineProps(['activeEquipment'])
 

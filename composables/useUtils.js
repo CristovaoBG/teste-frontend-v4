@@ -1,4 +1,4 @@
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 
 export async function useUtils() {
 
@@ -7,8 +7,8 @@ export async function useUtils() {
     const equipmentPosHist = ref(null)
     const equipmentState = ref(null)
     const equipmentStateHist = ref(null)
-
-    const everyEquipmentEver = ref([])
+    const everyEquipmentEver = reactive([])
+    const nameFilter = ref("har")
   
     try {
         equipment.value = await $fetch('/equipment.json')
@@ -30,6 +30,7 @@ export async function useUtils() {
     }
 
     const getPositionHistory = (targetId) => {
+
         const result = equipmentPosHist.value.find(item => item.equipmentId === targetId)
         // organiza pela data (invertido)
         return result.positions.sort(
@@ -51,16 +52,26 @@ export async function useUtils() {
 
     // constroi todos os equipamentos
     equipment.value.forEach(eq => {
-        everyEquipmentEver.value.push(ref({
+        everyEquipmentEver.push({
             equipment: eq,
             equipmentModel: equipmentModel.value.filter(model => model.id === eq.equipmentModelId)[0],
             positionHistory: getPositionHistory(eq.id),
             stateHistory: getStateHistory(eq.id),
-        }))
+        })
     })
 
-    const getEquipment = (targetId) => {
-        return everyEquipmentEver.value.find(item => item.value.equipment.id === targetId)
+    const filteredEquipments = computed(() => {
+        const teste = nameFilter.value.toLowerCase()
+        console.log("atualizou")
+        return everyEquipmentEver.filter(item => 
+            item.equipmentModel.name.toLowerCase().startsWith(teste)
+        )
+    })
+    
+    const setNameFilter = (name) => {
+        nameFilter.value = name
+        console.log(name)
+        
     }
 
     return { 
@@ -72,9 +83,10 @@ export async function useUtils() {
         getPositionHistory,
         getLatestPositions,
         getStateFromId,
-        getEquipment,
         getStateHistory,
+        filteredEquipments,
         everyEquipmentEver,
+        setNameFilter
     }
 
 }
