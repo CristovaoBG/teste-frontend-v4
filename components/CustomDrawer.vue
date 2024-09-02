@@ -39,7 +39,6 @@ const items = computed(() => {
     return result
 })
 const date = (d) => {
-    console.log(d)
     if (!d) return ""
     const date = new Date(d)
     return date.toLocaleDateString('pt-BR', {
@@ -57,7 +56,7 @@ const date = (d) => {
 
 .contain {
   overflow-y: auto;
-  max-height: 400px; /* Ajuste a altura conforme necessário */
+  max-height: 50vh; /* Ajuste a altura conforme necessário */
 }
 
 .timeline {

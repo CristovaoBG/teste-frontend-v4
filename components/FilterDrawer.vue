@@ -10,7 +10,7 @@
   
   const utils = await useUtils()
 
-  const textValue = ref("Har")
+  const textValue = ref("")
   
   const updateFilter = () => {
       utils.setNameFilter(textValue.value)

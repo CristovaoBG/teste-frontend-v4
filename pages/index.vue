@@ -1,6 +1,5 @@
 <template>
     <ClientOnly fallback="Loading Map...">
-    <v-card>
         <v-layout>
             <!-- botao de fechar movimentacao-->
             <v-fab
@@ -15,7 +14,7 @@
                 offset
                 @click="closeMovimentation"
             />
-                        <!-- botao de fechar movimentacao-->
+                        <!-- botao de filtragem-->
             <v-fab
                 :active="!filterDrawer && !showPositions"
                 color="#000000"
@@ -33,13 +32,14 @@
                 <FilterDrawer/>
             </v-navigation-drawer>
             <!-- barra de navegação à esquerda -->
+            
             <v-navigation-drawer v-model="dr" temporary>
                 <v-list-item>
                     <v-container>
                         <v-img src="public/aiko.png"/>
                     </v-container>
                 </v-list-item>
-                <v-divider></v-divider>
+                <v-divider/>
                 <v-list density="compact" nav>
                     <v-col cols="12">
                         <v-btn block class="full-width font-weight-bold" density="comfortable" @click="handleMovimentationClicked">Movimentação</v-btn>
@@ -48,6 +48,7 @@
                         <v-btn block class="full-width font-weight-bold" density="comfortable" @click="handleDetailsClicked">Detalhes</v-btn>
                     </v-col>
                 </v-list>
+                <v-divider/>
                 <CustomDrawer :activeEquipment="activeEquipment"/>
             </v-navigation-drawer>
             <DetailsComponent2 :dialog="detailsDialog" :equipmentId="activeEquipment" @closeDialog="detailsDialog=false"/>
@@ -63,7 +64,6 @@
                 </v-app>
                 </v-main>
             </v-layout>
-        </v-card>
     </ClientOnly>
 </template>
 
@@ -74,7 +74,7 @@ const dr = ref(false)
 const activeEquipment = ref(null)
 const detailsDialog = ref(false)
 const showPositions = ref(false)
-const filterDrawer = ref(true)
+const filterDrawer = ref(false)
 
 const handleMovimentationClicked = () => {
     showPositions.value = true

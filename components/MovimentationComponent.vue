@@ -24,7 +24,6 @@ const utils = await useUtils();
 
 const props = defineProps(['equipmentId'])
 
-console.log(utils.getPositionHistory(props.equipmentId).map(position => [position.lat, position.lon]))
 
 const historyAndTimes = computed(() => {
     return utils.getPositionHistory(props.equipmentId)

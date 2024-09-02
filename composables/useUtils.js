@@ -8,7 +8,7 @@ export async function useUtils() {
     const equipmentState = ref(null)
     const equipmentStateHist = ref(null)
     const everyEquipmentEver = reactive([])
-    const nameFilter = ref("har")
+    const nameFilter = ref("")
   
     try {
         equipment.value = await $fetch('/equipment.json')
@@ -67,11 +67,14 @@ export async function useUtils() {
             item.equipmentModel.name.toLowerCase().startsWith(teste)
         )
     })
+
+    const getEquipment = (idTarget) => {
+        return everyEquipmentEver.filter(item => item.equipment.id === idTarget)[0]
+    }
     
     const setNameFilter = (name) => {
         nameFilter.value = name
         console.log(name)
-        
     }
 
     return { 
@@ -86,7 +89,8 @@ export async function useUtils() {
         getStateHistory,
         filteredEquipments,
         everyEquipmentEver,
-        setNameFilter
+        setNameFilter,
+        getEquipment
     }
 
 }

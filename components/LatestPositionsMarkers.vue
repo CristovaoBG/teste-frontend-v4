@@ -2,7 +2,7 @@
 <template>
     <div>
         <CustomMarker
-        v-for="equipment in filteredEquipments"
+        v-for="(equipment, id) in filteredEquipments" :key="id"
         :equipmentData="equipment"
         :showMode="showMode"
         @markerClicked="handleNotify"
