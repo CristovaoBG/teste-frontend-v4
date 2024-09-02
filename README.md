@@ -4,13 +4,13 @@ This is a implementation of a challenge proposed by AIKO. In it, you are the fro
 
 ## Some of the features
 
-![Display latest states with mouse hover](https://s11.gifyu.com/images/SoXzH.gif)
+![Display latest states with mouse hover](https://github.com/CristovaoBG/teste-frontend-v4/docs/tags.mp4)
 
-![Show timeline history of the status](https://s11.gifyu.com/images/SoXzx.gif)
+![Show timeline history of the status](https://github.com/CristovaoBG/teste-frontend-v4/docs/lista.mp4)
 
-![Calculates and displays important data](https://s11.gifyu.com/images/SoXzK.gif)
+![Calculates and displays important data](https://github.com/CristovaoBG/teste-frontend-v4/docs/info.mp4)
 
-![Show positional history](https://s11.gifyu.com/images/SoXzN.gif)
+![Show positional history](https://github.com/CristovaoBG/teste-frontend-v4/docs/posicoes.mp4)
 
 ## Used technologies
 
