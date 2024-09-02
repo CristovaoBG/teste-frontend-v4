@@ -1,6 +1,6 @@
 <template>
     <div>
-      <v-text-field label="Label" v-model="textValue" @input="updateFilter"></v-text-field>
+      <v-text-field label="Filtrar Por Nome" v-model="textValue" @input="updateFilter"></v-text-field>
     </div>
   </template>
   
