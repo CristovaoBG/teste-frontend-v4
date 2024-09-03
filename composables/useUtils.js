@@ -9,17 +9,32 @@ export async function useUtils() {
     const equipmentStateHist = ref(null)
     const everyEquipmentEver = reactive([])
     const nameFilter = ref("")
-  
+
     try {
-        equipment.value = await $fetch('/equipment.json')
-        equipmentModel.value = await $fetch('/equipmentModel.json')
-        equipmentPosHist.value = await $fetch('/equipmentPositionHistory.json')
-        equipmentState.value = await $fetch('/equipmentState.json')
-        equipmentStateHist.value = await $fetch('/equipmentStateHistory.json')
+        
+        const [
+            equipmentData,
+            equipmentModelData,
+            equipmentPosHistData,
+            equipmentStateData,
+            equipmentStateHistData
+        ] = await Promise.all([
+            $fetch('/equipment.json'),
+            $fetch('/equipmentModel.json'),
+            $fetch('/equipmentPositionHistory.json'),
+            $fetch('/equipmentState.json'),
+            $fetch('/equipmentStateHistory.json')
+        ]);
+        equipment.value = equipmentData;
+        equipmentModel.value = equipmentModelData;
+        equipmentPosHist.value = equipmentPosHistData;
+        equipmentState.value = equipmentStateData;
+        equipmentStateHist.value = equipmentStateHistData;
+
     } catch (error) {
         console.error('Error fetching data:', error)
     }
-    
+
     const getStateFromId = (target) => {
         const targetId = target.equipmentStateId
         const result = equipmentState.value.find(item => item.id === targetId)
@@ -63,7 +78,7 @@ export async function useUtils() {
     const filteredEquipments = computed(() => {
         const teste = nameFilter.value.toLowerCase()
         console.log("atualizou")
-        return everyEquipmentEver.filter(item => 
+        return everyEquipmentEver.filter(item =>
             item.equipmentModel.name.toLowerCase().startsWith(teste)
         )
     })
@@ -71,13 +86,13 @@ export async function useUtils() {
     const getEquipment = (idTarget) => {
         return everyEquipmentEver.filter(item => item.equipment.id === idTarget)[0]
     }
-    
+
     const setNameFilter = (name) => {
         nameFilter.value = name
         console.log(name)
     }
 
-    return { 
+    return {
         equipment,
         equipmentModel,
         equipmentPosHist,
