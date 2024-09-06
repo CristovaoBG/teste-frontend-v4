@@ -1,23 +1,19 @@
 <template>
-    <div>
-      <v-text-field label="Filtrar Por Nome" v-model="textValue" @input="updateFilter"></v-text-field>
-    </div>
-  </template>
-  
-  <script setup>
-  import { ref } from 'vue'
-  import { useUtils } from '~/composables/useUtils.js'
-  
-  const utils = await useUtils()
+  <div>
+    <v-text-field label="Filtrar Por Nome" v-model="textValue" @input="updateFilter"></v-text-field>
+  </div>
+</template>
 
-  const textValue = ref("")
-  
-  const updateFilter = () => {
-      utils.setNameFilter(textValue.value)
-  }
-  </script>
-  
-  <style scoped>
-  /* Adicione estilos aqui, se necessário */
-  </style>
-  
+<script setup>
+const store = useEquipmentStore();
+const textValue = ref("")
+await store.fetchData()
+
+const updateFilter = () => {
+  store.setNameFilter(textValue.value)
+}
+</script>
+
+<style scoped>
+/* Adicione estilos aqui, se necessário */
+</style>

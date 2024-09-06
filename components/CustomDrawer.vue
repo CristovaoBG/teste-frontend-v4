@@ -23,8 +23,6 @@ const { getStateFromId, getStateHistory } = await useUtils()
 
 const props = defineProps(['activeEquipment'])
 
-onMounted(() => { console.log(props.activeEquipment) })
-
 const activeEquipmentComputed = computed(() => {
     return props.activeEquipment
 })

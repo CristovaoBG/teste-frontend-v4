@@ -2,21 +2,34 @@
 <template>
     <div>
         <CustomMarker
-        v-for="(equipment, id) in filteredEquipments" :key="id"
+        v-for="(equipment, id) in store.filteredEquipments" :key="id"
         :equipmentData="equipment"
         :showMode="showMode"
+        :icon2="getIcon(equipment)"
         @markerClicked="handleNotify"
         />
     </div>
 </template>
 
 <script setup>
-import L from 'leaflet'
-import { ref, onMounted, computed } from 'vue'
-import { useFetch } from '#app'
-import { useUtils } from '~/composables/useUtils.js'
+import { useEquipmentStore } from '~/stores/equipmentStore'
 
-const { filteredEquipments } = await useUtils();
+const { harvesterIcon, caminhao, garra, divIcon } = useIcons();
+const store = useEquipmentStore();
+await store.fetchData()
+
+const getIcon = (eq) => {
+    if (eq.equipmentModel.name === "Caminhão de carga") {
+        return caminhao
+    }
+    else if (eq.equipmentModel.name === "Harvester") {
+        return harvesterIcon
+    }
+    else if (eq.equipmentModel.name === "Garra traçadora") {
+        return garra
+    }
+    else return null
+}
 
 const showMode = ref("latest")
 

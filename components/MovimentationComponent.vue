@@ -1,10 +1,10 @@
 <!-- TODO: mudar nome desse componente -->
 <template>
     <div>
-    <LPolyline
+      <LPolyline
         :lat-lngs="history"
         color="green"
-        opacity=0.5
+        :opacity=0.5
     />
     <LMarker 
     v-for="item in historyAndTimes" :key="item"

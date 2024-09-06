@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@nuxtjs/leaflet": "^1.2.2",
+    "@pinia/nuxt": "^0.5.4",
     "nuxt": "^3.13.0",
+    "pinia": "^2.2.2",
     "vue": "latest",
     "vuetify-nuxt-module": "^0.17.1"
   }

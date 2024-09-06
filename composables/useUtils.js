@@ -77,7 +77,6 @@ export async function useUtils() {
 
     const filteredEquipments = computed(() => {
         const teste = nameFilter.value.toLowerCase()
-        console.log("atualizou")
         return everyEquipmentEver.filter(item =>
             item.equipmentModel.name.toLowerCase().startsWith(teste)
         )
@@ -89,7 +88,6 @@ export async function useUtils() {
 
     const setNameFilter = (name) => {
         nameFilter.value = name
-        console.log(name)
     }
 
     return {
